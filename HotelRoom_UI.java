@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-// Room class to store room information
 class Room {
     private int roomNumber;
     private String roomType;
@@ -35,7 +34,6 @@ class Room {
     public void setGuestPhone(String guestPhone) { this.guestPhone = guestPhone; }
 }
 
-// Room Panel to display individual room
 class RoomPanel extends JPanel {
     private Room room;
     private JLabel roomLabel;
@@ -49,7 +47,6 @@ class RoomPanel extends JPanel {
         setPreferredSize(new Dimension(150, 140));
         setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         
-        // Room info panel
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         
@@ -69,15 +66,9 @@ class RoomPanel extends JPanel {
         infoPanel.add(typeLabel);
         infoPanel.add(priceLabel);
         infoPanel.add(statusLabel);
-        
-        // Button panel
         JPanel buttonPanel = new JPanel(new GridLayout(2, 1, 2, 2));
-        
-        // Action button
         actionButton = new JButton();
         actionButton.addActionListener(bookListener);
-        
-        // Maintenance button
         maintenanceButton = new JButton("Maintenance");
         maintenanceButton.setFont(new Font("Arial", Font.PLAIN, 10));
         maintenanceButton.addActionListener(maintenanceListener);
@@ -123,8 +114,6 @@ class RoomPanel extends JPanel {
         return room;
     }
 }
-
-// Main Hotel Management Frame
 public class HotelRoomManagementUI extends JFrame {
     private ArrayList<Room> rooms;
     private ArrayList<RoomPanel> roomPanels;
@@ -136,15 +125,9 @@ public class HotelRoomManagementUI extends JFrame {
         setSize(900, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
-        
-        // Initialize rooms
         initializeRooms();
-        
-        // Create header panel
         JPanel headerPanel = createHeaderPanel();
         add(headerPanel, BorderLayout.NORTH);
-        
-        // Create rooms display panel with scroll
         roomsDisplayPanel = new JPanel();
         roomsDisplayPanel.setLayout(new GridLayout(0, 4, 10, 10));
         roomsDisplayPanel.setBackground(Color.WHITE);
@@ -154,8 +137,6 @@ public class HotelRoomManagementUI extends JFrame {
         JScrollPane scrollPane = new JScrollPane(roomsDisplayPanel);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         add(scrollPane, BorderLayout.CENTER);
-        
-        // Create footer with stats
         JPanel footerPanel = createFooterPanel();
         add(footerPanel, BorderLayout.SOUTH);
         
@@ -166,18 +147,12 @@ public class HotelRoomManagementUI extends JFrame {
     private void initializeRooms() {
         rooms = new ArrayList<>();
         roomPanels = new ArrayList<>();
-        
-        // Add Single rooms (101-106)
         for (int i = 101; i <= 106; i++) {
             rooms.add(new Room(i, "Single", 1500));
         }
-        
-        // Add Double rooms (201-208)
         for (int i = 201; i <= 208; i++) {
             rooms.add(new Room(i, "Double", 2500));
         }
-        
-        // Add Suite rooms (301-304)
         for (int i = 301; i <= 304; i++) {
             rooms.add(new Room(i, "Suite", 5000));
         }
@@ -216,8 +191,7 @@ public class HotelRoomManagementUI extends JFrame {
         
         roomsDisplayPanel.revalidate();
         roomsDisplayPanel.repaint();
-     // Inside HotelRoomManagementUI.java, likely in the constructor or a setup method
-        this.statsLabel = new javax.swing.JLabel(); // Initialize the JLabel object
+        this.statsLabel = new javax.swing.JLabel(); 
         updateStats();
     }
     
@@ -258,7 +232,7 @@ public class HotelRoomManagementUI extends JFrame {
         ));
     }
     
-    // Action listener for room booking/checkout buttons
+   
     class RoomActionListener implements ActionListener {
         private Room room;
         
@@ -276,7 +250,7 @@ public class HotelRoomManagementUI extends JFrame {
         }
     }
     
-    // Action listener for maintenance button
+  
     class MaintenanceActionListener implements ActionListener {
         private Room room;
         
